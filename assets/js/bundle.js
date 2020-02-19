@@ -253,7 +253,7 @@
     base_baseUrl: null,
   
     setBasebaseUrl: (baseUrl) => {
-      cardModule.base_baseUrl = baseUrl+'/cards';
+      cardModule.base_baseUrl = '/cards';
     },
   
     showAddModal: (event) => {
@@ -269,7 +269,7 @@
       let data = new FormData(event.target);
   
       try {
-        let response = await fetch(cardModule.base_baseUrl,{
+        let response = await fetch('/cards',{
           method: "POST",
           body: data
         });
@@ -290,7 +290,7 @@
    handleEditCardForm: async (event) => {
       const cardId = event.target.oid;
       try {
-        let response = await fetch(cardModule.base_baseUrl+'/'+cardId,{
+        let response = await fetch('/'+cardId,{
           method: "PATCH",
           body: event.detail.formData
         });
@@ -331,7 +331,7 @@
       }
       const cardId = event.target.oid;
       try {
-        let response = await fetch(cardModule.base_baseUrl+'/'+cardId,{
+        let response = await fetch('cards/'+cardId,{
           method: "DELETE"
         });
         if (response.ok) {
@@ -356,7 +356,7 @@
     base_baseUrl: null,
   
     setBasebaseUrl: (baseUrl) => {
-      listModule.base_baseUrl = baseUrl+'/lists';
+      listModule.base_baseUrl = '/lists';
     },
   
     showAddModal: () => {
@@ -370,7 +370,7 @@
       data.set('page_order', nbListes);
   
       try {
-        let response = await fetch(listModule.base_baseUrl, {
+        let response = await fetch('/lists', {
           method: "POST",
           body: data
         }); 
@@ -391,7 +391,7 @@
     handleEditListForm: async (event) => {
       const listId = event.target.oid;
       try {
-        let response = await fetch(listModule.base_baseUrl+'/'+listId,{
+        let response = await fetch('/'+listId,{
           method: "PATCH",
           body: event.detail.formData
         });
@@ -433,7 +433,7 @@
         return;
       }
       try {
-        let response = await fetch(listModule.base_baseUrl+'/'+listId, {
+        let response = await fetch('lists/'+listId, {
           method: "DELETE"
         });
         if (response.ok) {
@@ -454,7 +454,7 @@
         let data = new FormData();
         data.set('position', position);
         data.set('list_id', listId);
-        fetch( cardModule.base_baseUrl+'/'+cardId, {
+        fetch('/'+cardId, {
           method: "PATCH",
           body: data
         });
@@ -509,7 +509,7 @@
       const cardId = event.target.oid;
       const modal = document.getElementById('associateTagModal');
       try {
-        let response = await fetch(tagModule.base_baseUrl+'/tags');
+        let response = await fetch('/tags');
         if (response.ok) {
           let tags = await response.json();
           let container = document.createElement('section');
@@ -540,7 +540,7 @@
       try {
         let data = new FormData();
         data.set('tag_id', tagId);
-        let response = await fetch(tagModule.base_baseUrl+`/cards/${cardId}/tags`, {
+        let response = await fetch(`/cards/${cardId}/tags`, {
           method: "POST",
           body: data
         });
@@ -572,7 +572,7 @@
       const tagId = event.target.getAttribute('tag-id');
       const cardId = event.target.getAttribute('card-id');
       try {
-        let response = await fetch(tagModule.base_baseUrl+`/cards/${cardId}/tags/${tagId}`,{
+        let response = await fetch(`/cards/${cardId}/tags/${tagId}`,{
           method: "DELETE"
         });
         if (response.ok) {
@@ -608,7 +608,7 @@
   
     showEditModal: async () => {
       try {
-        let response = await fetch(tagModule.base_baseUrl+'/tags');
+        let response = await fetch('/tags');
         if (response.ok) {
           const modal = document.getElementById('addAndEditTagModal');
   
@@ -636,7 +636,7 @@
       event.preventDefault();
       let data = new FormData(event.target);
       try {
-        let response = await fetch(tagModule.base_baseUrl+'/tags',{
+        let response = await fetch('/tags',{
           method: "POST",
           body: data
         });
@@ -658,7 +658,7 @@
   
       let tagId = event.target.getAttribute('tag-id');
       try {
-        let response = await fetch(tagModule.base_baseUrl+'/tags/'+tagId,{
+        let response = await fetch('/tags/'+tagId,{
           method: "PATCH",
           body: data
         });
@@ -684,7 +684,7 @@
     handleDeleteTag: async (event) => {
       const tagId = event.target.closest('form').getAttribute('tag-id');
       try {
-        let response = await fetch(tagModule.base_baseUrl+'/tags/'+tagId, {
+        let response = await fetch('/tags/'+tagId, {
           method: "DELETE"
         });
         if (response.ok) {
