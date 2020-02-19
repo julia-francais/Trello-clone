@@ -1,5 +1,4 @@
-const dotenv = require('dotenv');
-dotenv.config();
+const dotenv = require('dotenv').config();
 const express = require('express');
 const router = require('./app/router');
 const cors = require('cors');
@@ -7,6 +6,7 @@ const multer = require('multer');
 
 const PORT = process.env.PORT || 5050;
 const app = express();
+const baseUrl = process.env.BASE_URL;
 
 app.use(cors('*'));
 
@@ -27,5 +27,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Listening on ${PORT} ...and on ${process.env.DATABASE_URL}`);
+  console.log(`Listening on ${baseUrl} and on ${process.env.DATABASE_URL}`);
 });
