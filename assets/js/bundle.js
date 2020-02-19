@@ -290,7 +290,7 @@
    handleEditCardForm: async (event) => {
       const cardId = event.target.oid;
       try {
-        let response = await fetch('/'+cardId,{
+        let response = await fetch('cards/'+cardId,{
           method: "PATCH",
           body: event.detail.formData
         });
@@ -391,7 +391,7 @@
     handleEditListForm: async (event) => {
       const listId = event.target.oid;
       try {
-        let response = await fetch('/'+listId,{
+        let response = await fetch('lists/'+listId,{
           method: "PATCH",
           body: event.detail.formData
         });
@@ -454,7 +454,7 @@
         let data = new FormData();
         data.set('position', position);
         data.set('list_id', listId);
-        fetch('/'+cardId, {
+        fetch('cards/'+cardId, {
           method: "PATCH",
           body: data
         });
