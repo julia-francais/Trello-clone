@@ -154,7 +154,7 @@
   
   
   var app = {
-    base_url: "http://localhost:5000",
+    base_url: process.env.BASE_URL,
   
     init: function () {
       listModule.setBaseUrl(app.base_url);
