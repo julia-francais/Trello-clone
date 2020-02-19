@@ -27,5 +27,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Listening on ${PORT} ...and on ${process.env.PGSQL_URL}`);
+  console.log(`Listening on ${PORT} ...and on ${process.env.DATABASE_URL}`);
 });
